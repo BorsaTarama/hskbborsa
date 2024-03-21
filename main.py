@@ -49,6 +49,9 @@ for sheet_name in sheet_names:
 # İlk sayfayı DataFrame'e oku
 first_sheet_name = sheet_names[0]
 first_df = pd.read_excel(excel_file, sheet_name=first_sheet_name)
+# DataFrame'i görüntüle
+st.write("Original DataFrame:")
+st.write(first_df)
 
 dynamic_filters = DynamicFilters(df=first_df, filters=['Hisse'])
 dynamic_filters.display_filters(location='sidebar')
@@ -68,9 +71,7 @@ dynamic_filters = DynamicFilters(first_df, filters_except_hisse)
 # Filtreleri görüntüle
 dynamic_filters.display_filters(location='sidebar')
 
-# DataFrame'i görüntüle
-st.write("Original DataFrame:")
-st.write(first_df)
+
 
 # Filtrelenmiş DataFrame'i görüntüle
 st.write("Filtered DataFrame:")
