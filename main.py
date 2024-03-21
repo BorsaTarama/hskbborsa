@@ -26,9 +26,6 @@ df2 = dfs[xls.sheet_names[1]]
 df=pd.read_csv("results.csv")
 
 
-unique_values_list = df1["Hisse"].unique().tolist()
-random_three_values = random.sample(unique_values_list, 3)
-print(random_three_values)
 
 #side bar: switcher
 gender=st.sidebar.multiselect(
@@ -86,3 +83,7 @@ with st.expander("⏱ Search student by name"):
         st.dataframe(df_search,use_container_width=True )
     else:
         text_search=""
+
+unique_values_list = df1["Hisse"].unique().tolist()
+random_three_values = random.sample(unique_values_list, 3)
+print(random_three_values)
