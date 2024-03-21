@@ -58,6 +58,20 @@ dynamic_filters.display_filters(location='sidebar')
 dynamic_filters.display_df()
 
 
+for i in range(20):
+    col = f'col{i}'
+    first_df[col]= range(10)
+df = pd.DataFrame(first_df)
+
+columns = st.multiselect("Columns:",df.columns)
+filter = st.radio("Choose by:", ("inclusion","exclusion"))
+
+if filter == "exclusion":
+    columns = [col for col in df.columns if col not in columns]
+
+df[columns]
+
+
 
 # Filtreleri oluştur
 filters = list(first_df.columns)
@@ -72,11 +86,14 @@ dynamic_filters = DynamicFilters(first_df, filters_except_hisse)
 dynamic_filters.display_filters(location='sidebar')
 
 
-
 # Filtrelenmiş DataFrame'i görüntüle
 st.write("Filtered DataFrame:")
 filtered_df = dynamic_filters.display_df()
 st.write(filtered_df)
+
+
+
+
 
 
 if __name__ == "__main__":
