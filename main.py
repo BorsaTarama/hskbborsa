@@ -43,6 +43,20 @@ def main():
 
         st.write(filtered_df)
 
+data = {
+    'Region': ['North America', 'North America', 'North America', 'Europe', 'Europe', 'Asia', 'Asia'],
+    'Country': ['USA', 'USA', 'Canada', 'Germany', 'France', 'Japan', 'China'],
+    'City': ['New York', 'Los Angeles', 'Toronto', 'Berlin', 'Paris', 'Tokyo', 'Beijing']
+    }
+
+df_data = pd.DataFrame(data)
+
+dynamic_filters = DynamicFilters(df_data, filters=['Region', 'Country', 'City'])
+
+dynamic_filters.display_filters(location='sidebar')
+
+dynamic_filters.display_df()
+
 if __name__ == "__main__":
     main()
 
@@ -110,16 +124,3 @@ with st.expander("⏱ Search student by name"):
     else:
         text_search=""
 
-data = {
-    'Region': ['North America', 'North America', 'North America', 'Europe', 'Europe', 'Asia', 'Asia'],
-    'Country': ['USA', 'USA', 'Canada', 'Germany', 'France', 'Japan', 'China'],
-    'City': ['New York', 'Los Angeles', 'Toronto', 'Berlin', 'Paris', 'Tokyo', 'Beijing']
-    }
-
-df_data = pd.DataFrame(data)
-
-dynamic_filters = DynamicFilters(df_data, filters=['Region', 'Country', 'City'])
-
-dynamic_filters.display_filters(location='sidebar')
-
-dynamic_filters.display_df()
