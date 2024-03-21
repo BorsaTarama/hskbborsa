@@ -8,23 +8,6 @@ UI()
 # Excel dosyasını oku
 excel_file = 'Getiri_21032024_13_47.xlsx'
 
-# Tüm sayfaları oku
-xls = pd.ExcelFile(excel_file)
-
-# Sayfa isimlerini al
-sheet_names = xls.sheet_names
-
-# Her sayfayı bir DataFrame'e atamak için bir sözlük oluştur
-dfs = {}
-
-for sheet_name in sheet_names:
-    # Sayfayı DataFrame'e oku
-    df = pd.read_excel(excel_file, sheet_name=sheet_name)
-    # DataFrame'i sözlüğe ekle
-    dfs[sheet_name] = df
-
-# İşte her bir sayfa için ayrı bir DataFrame
-# Örneğin, 'Sheet1' adlı sayfa için DataFrame'e erişmek için dfs['Sheet1'] kullanabilirsiniz
 
 
 #####
@@ -67,6 +50,42 @@ def main():
         st.write(filtered_df)
 
 
+class DynamicFilters:
+    def __init__(self, df, filters):
+        self.df = df
+        self.filters = filters
+
+    def display_filters(self, location='sidebar'):
+        print(f"Filters: {self.filters} - Location: {location}")
+
+    def display_df(self):
+        print(self.df)
+
+# Tüm sayfaları oku
+xls = pd.ExcelFile(excel_file)
+
+# Sayfa isimlerini al
+sheet_names = xls.sheet_names
+dfs = {}
+# Her bir sayfa için DataFrame oluştur ve DynamicFilters objesi oluşturarak görüntüle
+for sheet_name in sheet_names:
+    # Sayfayı DataFrame'e oku
+    df = pd.read_excel(excel_file, sheet_name=sheet_name)
+    dfs[sheet_name] = df
+
+# İşte her bir sayfa için ayrı bir DataFrame
+# Örneğin, 'Sheet1' adlı sayfa için DataFrame'e erişmek için dfs['Sheet1'] kullanabilirsiniz
+
+    
+    # Filtreleri belirle
+    filters = list(df.columns)
+    
+    # DynamicFilters objesi oluştur
+    dynamic_filters = DynamicFilters(df, filters)
+    
+    # Filtreleri ve DataFrame'i görüntüle
+    dynamic_filters.display_filters(location='sidebar')
+    dynamic_filters.display_df()
 
 
 
