@@ -27,12 +27,12 @@ df=pd.read_csv("results.csv")
 
 unique_values1 = df1["Hisse"].unique().tolist()
 random_three_values1 = random.sample(unique_values, 3)
-
+print(random_three_values1)
 #side bar: switcher
 gender=st.sidebar.multiselect(
     label="Select Gender",
     options=df1["Hisse"].unique(),
-    default=random_three_values1 ,
+    default=df1["Hisse"].unique()[:3],
     )
 
 stream=st.sidebar.multiselect(
