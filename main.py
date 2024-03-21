@@ -9,23 +9,6 @@ UI()
 excel_file = 'Getiri_21032024_13_47.xlsx'
 
 
-
-#####
-# def load_data(file):
-    # if file is not None:
-        # if file.name.endswith(('.xls', '.xlsx')):
-            # df = pd.read_excel(file)
-        # elif file.name.endswith('.csv'):
-            # df = pd.read_csv(file)
-        # else:
-            # st.warning("Unsupported file format. Please upload a CSV or Excel file.")
-            # return None
-    # else:
-        # st.warning("No file uploaded. Using default CSV file.")
-        # df = pd.read_csv("results.csv")
-    # return df
-
-
 def main():
     #uploaded_file = st.sidebar.file_uploader("Choose a file")
     #df = load_data(uploaded_file)
