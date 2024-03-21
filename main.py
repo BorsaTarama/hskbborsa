@@ -50,6 +50,12 @@ for sheet_name in sheet_names:
 first_sheet_name = sheet_names[0]
 first_df = pd.read_excel(excel_file, sheet_name=first_sheet_name)
 
+dynamic_filters = DynamicFilters(df=first_df, filters=['Hisse'])
+dynamic_filters.display_filters(location='sidebar')
+dynamic_filters.display_df()
+
+
+
 # Filtreleri oluştur
 filters = list(first_df.columns)
 # "Hisse" sütunu filtrelere eklenir, diğer sütunlar sadece görünürlük için kullanılır
