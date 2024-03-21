@@ -25,8 +25,8 @@ df=pd.read_csv("results.csv")
 #side bar: switcher
 gender=st.sidebar.multiselect(
     label="Select Gender",
-    options=df["gender"].unique(),
-    default=df["gender"].unique(),
+    options=df1["gender"].unique(),
+    default=df1["gender"].unique(),
     )
 
 stream=st.sidebar.multiselect(
