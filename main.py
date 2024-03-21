@@ -62,3 +62,4 @@ st.write(display_df)
 st.write("Filtered DataFrame:")
 filtered_df = dynamic_filters.display_df()
 st.write(filtered_df)
+
