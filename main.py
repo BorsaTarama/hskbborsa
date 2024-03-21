@@ -8,7 +8,6 @@ UI()
 # Excel dosyasını oku
 excel_file = 'Getiri_21032024_13_47.xlsx'
 
-
 # Tüm sayfaları oku ve dfs adlı bir sözlüğe ekle
 xls = pd.ExcelFile(excel_file)
 dfs = {}
@@ -27,11 +26,17 @@ hisse_filter = st.sidebar.selectbox(
 # Filtreli DataFrame'i oluştur
 filtered_df = first_df[first_df['Hisse'] == hisse_filter]
 
+# Tüm sütunları içeren bir liste oluştur
+all_columns = list(filtered_df.columns)
+
+# "Hisse" sütununu listeden çıkar
+all_columns.remove('Hisse')
+
 # Seçilebilecek sütunları göstermek için bir çoklu seçim alanı oluştur
 selected_columns = st.sidebar.multiselect(
     label="Select columns to display",
-    options=list(filtered_df.columns),
-    default=list(filtered_df.columns)
+    options=all_columns,
+    default=all_columns
 )
 
 # Sadece seçilen sütunları içeren bir DataFrame oluştur
