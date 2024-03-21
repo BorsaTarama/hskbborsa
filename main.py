@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd 
 from query import *
 from streamlit_dynamic_filters import DynamicFilters
+import random
 #set page
 st.set_page_config(page_title="Bilgi Paneli",page_icon="🌓",layout="wide")
 UI()
@@ -20,13 +21,18 @@ df2 = dfs[xls.sheet_names[1]]
 
 
 
+
+
 df=pd.read_csv("results.csv")
+
+unique_values1 = df1["Hisse"].unique().tolist()
+random_three_values1 = random.sample(unique_values, 3)
 
 #side bar: switcher
 gender=st.sidebar.multiselect(
     label="Select Gender",
     options=df1["Hisse"].unique(),
-    default=df1["Hisse"].unique()[:3],
+    default=random_three_values1 ,
     )
 
 stream=st.sidebar.multiselect(
