@@ -26,7 +26,7 @@ df=pd.read_csv("results.csv")
 gender=st.sidebar.multiselect(
     label="Select Gender",
     options=df1["Hisse"].unique(),
-    default=df1["Hisse"].unique(),
+    default=df1["Hisse"].unique()[:3],
     )
 
 stream=st.sidebar.multiselect(
