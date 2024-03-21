@@ -5,24 +5,47 @@ from streamlit_dynamic_filters import DynamicFilters
 #set page
 st.set_page_config(page_title="Bilgi Paneli",page_icon="🌓",layout="wide")
 UI()
+# Excel dosyasını oku
+excel_file = 'Getiri_21032024_13_47.xlsx'
+
+# Tüm sayfaları oku
+xls = pd.ExcelFile(excel_file)
+
+# Sayfa isimlerini al
+sheet_names = xls.sheet_names
+
+# Her sayfayı bir DataFrame'e atamak için bir sözlük oluştur
+dfs = {}
+
+for sheet_name in sheet_names:
+    # Sayfayı DataFrame'e oku
+    df = pd.read_excel(excel_file, sheet_name=sheet_name)
+    # DataFrame'i sözlüğe ekle
+    dfs[sheet_name] = df
+
+# İşte her bir sayfa için ayrı bir DataFrame
+# Örneğin, 'Sheet1' adlı sayfa için DataFrame'e erişmek için dfs['Sheet1'] kullanabilirsiniz
+
+
 #####
-def load_data(file):
-    if file is not None:
-        if file.name.endswith(('.xls', '.xlsx')):
-            df = pd.read_excel(file)
-        elif file.name.endswith('.csv'):
-            df = pd.read_csv(file)
-        else:
-            st.warning("Unsupported file format. Please upload a CSV or Excel file.")
-            return None
-    else:
-        st.warning("No file uploaded. Using default CSV file.")
-        df = pd.read_csv("results.csv")
-    return df
+# def load_data(file):
+    # if file is not None:
+        # if file.name.endswith(('.xls', '.xlsx')):
+            # df = pd.read_excel(file)
+        # elif file.name.endswith('.csv'):
+            # df = pd.read_csv(file)
+        # else:
+            # st.warning("Unsupported file format. Please upload a CSV or Excel file.")
+            # return None
+    # else:
+        # st.warning("No file uploaded. Using default CSV file.")
+        # df = pd.read_csv("results.csv")
+    # return df
+
 
 def main():
-    uploaded_file = st.sidebar.file_uploader("Choose a file")
-    df = load_data(uploaded_file)
+    #uploaded_file = st.sidebar.file_uploader("Choose a file")
+    #df = load_data(uploaded_file)
 
     if df is not None:
         st.write("File loaded successfully.")
