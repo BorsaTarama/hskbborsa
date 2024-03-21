@@ -50,17 +50,6 @@ def main():
         st.write(filtered_df)
 
 
-class DynamicFilters:
-    def __init__(self, df, filters):
-        self.df = df
-        self.filters = filters
-
-    def display_filters(self, location='sidebar'):
-        print(f"Filters: {self.filters} - Location: {location}")
-
-    def display_df(self):
-        print(self.df)
-
 # Tüm sayfaları oku
 xls = pd.ExcelFile(excel_file)
 
@@ -88,21 +77,31 @@ for sheet_name in sheet_names:
     dynamic_filters.display_df()
 
 
+# İlk sayfayı DataFrame'e oku
+first_sheet_name = sheet_names[0]
+first_df = pd.read_excel(excel_file, sheet_name=first_sheet_name)
 
+# Filtreleri oluştur
+filters = list(first_df.columns)
+# "Hisse" sütunu filtrelere eklenir, diğer sütunlar sadece görünürlük için kullanılır
+# Bu nedenle "Hisse" sütunu dışındaki sütunlara boş bir değer atanır
+filters_except_hisse = [col if col == "Hisse" else "" for col in filters]
 
-data = {
-    'Region': ['North America', 'North America', 'North America', 'Europe', 'Europe', 'Asia', 'Asia'],
-    'Country': ['USA', 'USA', 'Canada', 'Germany', 'France', 'Japan', 'China'],
-    'City': ['New York', 'Los Angeles', 'Toronto', 'Berlin', 'Paris', 'Tokyo', 'Beijing']
-    }
+# DynamicFilters objesi oluştur
+dynamic_filters = DynamicFilters(first_df, filters_except_hisse)
 
-df_data = pd.DataFrame(dfs['UzunDonem'])
-
-dynamic_filters = DynamicFilters(df_data, filters=['Hisse'])
-
+# Filtreleri görüntüle
 dynamic_filters.display_filters(location='sidebar')
 
-dynamic_filters.display_df()
+# DataFrame'i görüntüle
+st.write("Original DataFrame:")
+st.write(first_df)
+
+# Filtrelenmiş DataFrame'i görüntüle
+st.write("Filtered DataFrame:")
+filtered_df = dynamic_filters.display_df()
+st.write(filtered_df)
+
 
 if __name__ == "__main__":
     main()
