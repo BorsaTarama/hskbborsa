@@ -66,6 +66,11 @@ def main():
 
         st.write(filtered_df)
 
+
+
+
+
+
 data = {
     'Region': ['North America', 'North America', 'North America', 'Europe', 'Europe', 'Asia', 'Asia'],
     'Country': ['USA', 'USA', 'Canada', 'Germany', 'France', 'Japan', 'China'],
