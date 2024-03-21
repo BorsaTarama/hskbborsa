@@ -19,25 +19,30 @@ df1 = dfs[xls.sheet_names[0]]
 df2 = dfs[xls.sheet_names[1]]
 
 
+
+df=pd.read_csv("results.csv")
+
 #side bar: switcher
-df1_hisse=st.sidebar.multiselect(
-    label="Hisse",
-    options=df1["Hisse"].unique(),
-    default=df1["Hisse"].unique(),
+gender=st.sidebar.multiselect(
+    label="Select Gender",
+    options=df["gender"].unique(),
+    default=df["gender"].unique(),
     )
 
-df2_hisse=st.sidebar.multiselect(
-    label="hisse",
-    options=df2["Hisse"].unique(),
-    default=df2["Hisse"].unique(),
+stream=st.sidebar.multiselect(
+    label="select Stream",
+    options=df["stream"].unique(),
+    default=df["stream"].unique(),
     )
-
-
-
+comment=st.sidebar.multiselect(
+    label="select Comment",
+    options=df["comment"].unique(),
+     default=df["comment"].unique(),
+    )
 #get selected item
 
 df_selection=df.query(
-    "gender==@gender & stream==@stream "
+    "gender==@gender & stream==@stream & comment==@comment"
 )
 
 #method to dowload dataframe as excel
@@ -73,4 +78,3 @@ with st.expander("⏱ Search student by name"):
         st.dataframe(df_search,use_container_width=True )
     else:
         text_search=""
-
