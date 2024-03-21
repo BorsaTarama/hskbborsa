@@ -25,9 +25,11 @@ df2 = dfs[xls.sheet_names[1]]
 
 df=pd.read_csv("results.csv")
 
-unique_values1 = df1["Hisse"].unique().tolist()
-random_three_values1 = random.sample(unique_values, 3)
-print(random_three_values1)
+
+unique_values_list = df1["Hisse"].unique().tolist()
+random_three_values = random.sample(unique_values_list, 3)
+print(random_three_values)
+
 #side bar: switcher
 gender=st.sidebar.multiselect(
     label="Select Gender",
