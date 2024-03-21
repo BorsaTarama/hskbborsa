@@ -6,7 +6,6 @@ from streamlit_dynamic_filters import DynamicFilters
 st.set_page_config(page_title="Bilgi Paneli",page_icon="🌓",layout="wide")
 UI()
 #####
-
 def load_data(file):
     if file is not None:
         if file.name.endswith(('.xls', '.xlsx')):
@@ -111,6 +110,16 @@ with st.expander("⏱ Search student by name"):
     else:
         text_search=""
 
+data = {
+    'Region': ['North America', 'North America', 'North America', 'Europe', 'Europe', 'Asia', 'Asia'],
+    'Country': ['USA', 'USA', 'Canada', 'Germany', 'France', 'Japan', 'China'],
+    'City': ['New York', 'Los Angeles', 'Toronto', 'Berlin', 'Paris', 'Tokyo', 'Beijing']
+    }
 
+df_data = pd.DataFrame(data)
 
+dynamic_filters = DynamicFilters(df_data, filters=['Region', 'Country', 'City'])
 
+dynamic_filters.display_filters(location='sidebar')
+
+dynamic_filters.display_df()
