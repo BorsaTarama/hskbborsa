@@ -96,9 +96,9 @@ data = {
     'City': ['New York', 'Los Angeles', 'Toronto', 'Berlin', 'Paris', 'Tokyo', 'Beijing']
     }
 
-df_data = pd.DataFrame(data)
+df_data = pd.DataFrame(dfs['UzunDonem'])
 
-dynamic_filters = DynamicFilters(df_data, filters=['Region', 'Country', 'City'])
+dynamic_filters = DynamicFilters(df_data, filters=['Hisse'])
 
 dynamic_filters.display_filters(location='sidebar')
 
