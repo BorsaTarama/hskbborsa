@@ -62,20 +62,6 @@ for sheet_name in sheet_names:
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
     dfs[sheet_name] = df
 
-# İşte her bir sayfa için ayrı bir DataFrame
-# Örneğin, 'Sheet1' adlı sayfa için DataFrame'e erişmek için dfs['Sheet1'] kullanabilirsiniz
-
-    
-    # Filtreleri belirle
-    filters = list(df.columns)
-    
-    # DynamicFilters objesi oluştur
-    dynamic_filters = DynamicFilters(df, filters)
-    
-    # Filtreleri ve DataFrame'i görüntüle
-    dynamic_filters.display_filters(location='sidebar')
-    dynamic_filters.display_df()
-
 
 # İlk sayfayı DataFrame'e oku
 first_sheet_name = sheet_names[0]
